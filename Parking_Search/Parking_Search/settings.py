@@ -82,14 +82,37 @@ WSGI_APPLICATION = 'Parking_Search.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'parking',
+        'USER': 'postgres',
+        'PASSWORD': '12345',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    },
+    # 'sphinx': {
+    #     'ENGINE': 'sphinxsearch.backend.sphinx',
+    #     'NAME': 'sphinx',
+    #     'HOST': '127.0.0.1',
+    #     'PORT': '9306',
+    #     'OPTIONS': {
+    #         'use_unicode': True,
+    #     }
+    # }
 }
+
+# DATABASE_ROUTERS = ['sphinxsearch.routers.SphinxRouter']
+#
+# SILENCED_SYSTEM_CHECKS = ['models.E028']
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -132,16 +155,20 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-
-# #Настройка sphinx
+#
+# INSTALLED_APPS += (
+#     'sphinxsearch',
+# )
+#
 # SPHINX_DATABASE_NAME = 'sphinx'
 #
 # DATABASES[SPHINX_DATABASE_NAME] = {
 #     'ENGINE': 'sphinxsearch.backend.sphinx',
 #     'HOST': '127.0.0.1',
 #     'PORT': 9306,
+#     'OPTIONS': {
+#         'use_unicode': False # if non-ascii letters looks bad in results
+#     }
 # }
-#
+
 # DATABASE_ROUTERS = ['sphinxsearch.routers.SphinxRouter']
