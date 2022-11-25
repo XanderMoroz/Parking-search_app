@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'search',
+    'django.contrib.postgres',
     #'django-sphinxsearch',
 ]
 
@@ -102,21 +102,6 @@ DATABASES = {
     # }
 }
 
-# DATABASE_ROUTERS = ['sphinxsearch.routers.SphinxRouter']
-#
-# SILENCED_SYSTEM_CHECKS = ['models.E028']
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -155,20 +140,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-#
-# INSTALLED_APPS += (
-#     'sphinxsearch',
-# )
-#
-# SPHINX_DATABASE_NAME = 'sphinx'
-#
-# DATABASES[SPHINX_DATABASE_NAME] = {
-#     'ENGINE': 'sphinxsearch.backend.sphinx',
-#     'HOST': '127.0.0.1',
-#     'PORT': 9306,
-#     'OPTIONS': {
-#         'use_unicode': False # if non-ascii letters looks bad in results
-#     }
-# }
-
-# DATABASE_ROUTERS = ['sphinxsearch.routers.SphinxRouter']
