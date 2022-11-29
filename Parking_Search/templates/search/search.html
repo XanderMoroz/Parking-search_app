@@ -5,56 +5,11 @@
 {% block content %}
 <!-- Аннотация страницы-->
 <section class="section">
-        <h1 class="title">Поиск объявлений</h1>
+        <h1 class="title">Поиск парковочного места</h1>
         <h2 class="subtitle">
         Здесь вы можете найти интересующий вас <strong>адрес</strong> парковки.
         </h2>
 </section>
-
-<!-- Форма для поиска с фильтрами -->
-<!--<form method="GET">-->
-<!--    {{ filter.form }} &lt;!&ndash; Форму от фильтров за нас сделает Django. А вот кнопку, увы придётся делать самому &ndash;&gt;-->
-<!--    <input type="submit" value="Найти">-->
-<!--</form>-->
-
-<!--<br>-->
-
-<!--{% for adr in search_list %} &lt;!&ndash; filter.qs, т.к. теперь мы забираем уже отобранную по каким-то параметрам информацию &ndash;&gt;-->
-
-<!--<div class="card">-->
-<!--    <div class="card-content">-->
-<!--        <div class="media">-->
-<!--            &lt;!&ndash; Информация слева&ndash;&gt;-->
-<!--            <div class="media-left">-->
-<!--                <figure class="image is-48x48">-->
-<!--                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">-->
-<!--                </figure>-->
-<!--            </div>-->
-
-<!--            <div class="media-content">-->
-<!--                <p class="title is-4">-->
-<!--                    <a href="#">{{ adr.title | truncatewords:7 }}-->
-<!--                    </a>-->
-<!--                </p>-->
-<!--                <p class="subtitle is-6">{{ ad.user }} от {{ ad.creation_date | date:'d.M.Y' }} </p>-->
-<!--            </div>-->
-<!--            &lt;!&ndash; Информация справа&ndash;&gt;-->
-<!--            <div class="media-right">-->
-<!--                <p class="title is-4">-->
-<!--                    {{ ad.get_category_display }}-->
-<!--                </p>-->
-<!--                <p class="subtitle is-6">-->
-<!--                    Откликов {{ ad.feedback_set.all | length }}-->
-<!--                </p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-
-<!--<br> &lt;!&ndash; Отступ &ndash;&gt;-->
-
-<!--{% endfor %}-->
 
     <form>
         {% csrf_token %}
@@ -66,10 +21,7 @@
                 <button class="button is-info is-outlined" type="submit">Искать</button>
             </p>
         </div>
-<!--        <span>-->
-<!--            <input class="input is-normal" type="text" placeholder="Введите адрес" name="query">-->
-<!--            -->
-<!--        </span>-->
+
     <form/>
     {% for object in search_res %}
     <h2>{{object.headline | safe}}</h2>
