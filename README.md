@@ -1,6 +1,6 @@
 # Parking-search_app
 
-![Screen Shot](Screen.jpg)
+![Screen Shot](ScreenCast.gif)
 
 ## Описание проекта
 
