@@ -4,6 +4,7 @@ from .models import ParkingPlace
 # Create your views here.
 
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchHeadline
+from django.contrib.postgres.search import TrigramSimilarity
 # Create your views here.
 
 class AdrList(ListView):
@@ -44,7 +45,7 @@ class Search(ListView):
         if query:
             #qs = Post.objects.filter(title__icontains=query)
             #qs = ParkingPlace.objects.annotate(search=SearchVector("title")).filter(search=SearchQuery(query))
-            qs = ParkingPlace.objects.annotate(
+            qs = ParkingPlace.objects.filter(title__icontains=query).annotate(
                 headline=SearchHeadline(
                     "title",
                     SearchQuery(query),
@@ -52,7 +53,16 @@ class Search(ListView):
                     stop_sel="</i></u></b>",
                 )
             )
+        # similar = ParkingPlace.objects.filter(
+        #         title__trigram_word_similar=query,
+        #     ).annotate(word_similarity=TrigramWordSimilarity(query, "title"),
+        #     ).values("title", "word_similarity").order_by("-word_similarity")
+        qst = ParkingPlace.objects.all()
+        similar = ParkingPlace.objects.filter(
+            title__trigram_similar=query,
+        ).annotate(similarity=TrigramSimilarity("title", query)).order_by("-similarity"),
         context['search_res'] = qs
+        context['search_sim'] = similar
         return context
 
 
