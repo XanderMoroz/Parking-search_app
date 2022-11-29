@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ParkinrPlace
+from .models import ParkingPlace
 
-admin.site.register(ParkinrPlace)
+admin.site.register(ParkingPlace)
 # Register your models here.

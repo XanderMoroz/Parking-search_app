@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'search',
+    'django.contrib.postgres',
     #'django-sphinxsearch',
 ]
 
@@ -56,10 +57,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Parking_Search.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,17 +82,25 @@ WSGI_APPLICATION = 'Parking_Search.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'parking',
+        'USER': 'postgres',
+        'PASSWORD': '12345',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    },
+    # 'sphinx': {
+    #     'ENGINE': 'sphinxsearch.backend.sphinx',
+    #     'NAME': 'sphinx',
+    #     'HOST': '127.0.0.1',
+    #     'PORT': '9306',
+    #     'OPTIONS': {
+    #         'use_unicode': True,
+    #     }
+    # }
 }
-
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -128,14 +140,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# #Настройка sphinx
-# SPHINX_DATABASE_NAME = 'sphinx'
-#
-# DATABASES[SPHINX_DATABASE_NAME] = {
-#     'ENGINE': 'sphinxsearch.backend.sphinx',
-#     'HOST': '127.0.0.1',
-#     'PORT': 9306,
-# }
-#
-# DATABASE_ROUTERS = ['sphinxsearch.routers.SphinxRouter']
